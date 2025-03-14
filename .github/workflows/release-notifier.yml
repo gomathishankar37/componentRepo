@@ -15,7 +15,7 @@ jobs:
     - name: Send repository dispatch to Repo B
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.COMP_PAT }}
         repository: gomathishankar37/mgmtRepo
         event-type: release-triggered
         client-payload: '{"repo_name": "${{ github.repository }}", "release_tag": "${{ steps.get_release_tag.outputs.tag }}"}'
