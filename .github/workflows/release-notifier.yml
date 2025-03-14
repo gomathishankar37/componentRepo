@@ -12,5 +12,5 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        repository: user/repoB  # Replace with the actual owner and repository name
+        repository: gomathishankar37/mgmtRepo
         event-type: release-triggered
