@@ -1,0 +1,16 @@
+name: Notify Management Repo on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify-repo-b:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send repository dispatch to Repo B
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: user/repoB  # Replace with the actual owner and repository name
+        event-type: release-triggered
