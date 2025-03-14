@@ -8,9 +8,14 @@ jobs:
   notify-repo-b:
     runs-on: ubuntu-latest
     steps:
+    - name: Get the release tag
+      id: get_release_tag
+      run: echo "::set-output name=tag::$(echo $GITHUB_REF | sed 's/refs\/tags\///')"
+
     - name: Send repository dispatch to Repo B
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: gomathishankar37/mgmtRepo
         event-type: release-triggered
+        client-payload: '{"repo_name": "${{ github.repository }}", "release_tag": "${{ steps.get_release_tag.outputs.tag }}"}'
